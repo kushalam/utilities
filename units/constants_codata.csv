@@ -1,0 +1,40 @@
+﻿Universal constants useful for all applications. 
+Recommended CODATA-2022 values; not all constants included here. 
+Source: https://physics.nist.gov/cuu/Constants/
+Source: https://physics.nist.gov/PhysRefData/XrayTrans/Html/search.html
+category,constant_name,symbol,value,units
+defining,caesium_frequency,,9192631770.0,Hz
+defining,speed_of_light,c,299792458.0,m s^-1
+defining,Planck,h,6.62607015e-34,J Hz^-1
+defining,elementary_charge,e,1.602176634e-19,C
+defining,Avogadro,N_A,6.02214076e+23,mol^-1
+defining,Boltzmann,k,1.380649e-23,J K^-1
+defining,candela,K_cd,683.0,lm W^-1
+universal,vacuum_impedance,Z_0,376.730313412,Ohm
+universal,gravitational_constant,G,6.6743e-11,m^3 kg^-1 s^-2
+universal,Planck_length,l_P,1.616255e-35,m
+universal,Planck_mass,m_P,2.176434e-8,kg
+universal,Planck_time,t_P,5.391247e-44,s
+universal,Planck_temperature,T_P,1.416784e+32,K
+universal,electric_permittivity,epsilon_0,8.8541878188e-12,F m^-1
+universal,magnetic_permeability,mu_0,1.25663706127e-6,N A^-2
+physical,atomic_mass_constant,m_u,1.66053906892e-27,kg
+physical,molar_mass_constant,M_u,1.00000000105e-3,kg mol^-1
+physical,molar_gas_constant,R,8.314462618,J mol^-1 K^-1
+physical,Faraday_constant,F,96485.33212,C mol^-1
+physical,Stefan_Boltzmann_constant,sigma,5.670374419e-8,W m^-2 K^-4
+physical,Wien_wavelength_displacement_constant,b,2.897771955e-3,m K
+physical,Wien_frequency_displacement_constant,b_nu,5.878925757e+10,Hz K^-1
+electromagnetic,magnetic_flux_quantum,phi_0,2.067833848e-15,Wb
+electromagnetic,conductance_quantum,G_0,7.748091729e-5,S
+electromagnetic,Josephson_constant,K_J,483597.8484e+9,Hz V^-1
+electromagnetic,von_Klitzing_constant,R_K,25812.8074555,Ohm
+electromagnetic,Bohr_magneton,mu_B,9.2740100657e-24,J T^-1
+electromagnetic,nuclear_magneton,mu_N,5.0507837393e-27,J T^-1
+atomic,fine_structure,alpha,7.2973525643e-3,unitless
+atomic,Rydberg_constant,R_inf,10973731.568157,m^-1
+atomic,Bohr_radius,a_0,5.29177210544e-11,m
+atomic,Hartree_energy,E_h,4.3597447222060e-18,J
+atomic,electron_mass,m_e,9.1093837139e-31,kg
+atomic,proton_mass,m_p,1.67262192595e-27,kg
+atomic,neutron_mass,m_n,1.67492750056e-27,kg

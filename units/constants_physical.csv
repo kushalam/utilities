@@ -1,0 +1,7 @@
+category,constant_name,symbol,value,units
+physical,gravity,g_0,9.80665,m s^-2
+physical,standard_atmosphere,atm,101325.0,Pa
+physical,standard_state_pressure,ssp,100000.0,Pa
+physical,reduced_Planck,hbar,1.054571817e-34,J s
+thermodynamic,heat_capacity_ratio_air,gamma_air,1.4,unitless
+thermodynamic,specific_gas_constant_air,R_air,287.058,J kg^-1 K^-1

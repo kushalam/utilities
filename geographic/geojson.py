@@ -7,10 +7,10 @@ Author:     Kushal Moolchandani
 Created:    2025-02-26
 """
 
-import utils_file
+from .. import utils_file
 
 
-def create_geojson_geometry(geometry_type: str, coordinates: list = []):
+def create_geojson_geometry(geometry_type: str, coordinates: list = None):
     """
     Create a GeoJSON Geometry.
 
@@ -18,6 +18,8 @@ def create_geojson_geometry(geometry_type: str, coordinates: list = []):
     :param coordinates: List of coordinates
     :return: GeoJSON Geometry
     """
+    if coordinates is None:
+        coordinates = []
     if geometry_type == "Point":
         return {
             "type": "Point",
@@ -52,20 +54,22 @@ def create_geojson_geometry(geometry_type: str, coordinates: list = []):
         return None
 
 
-def create_geojson_geometry_collection(geometries: list = []):
+def create_geojson_geometry_collection(geometries: list = None):
     """
     Create a GeoJSON Geometry Collection.
 
     :param geometries: List of GeoJSON Geometries
     :return: GeoJSON Geometry Collection
     """
+    if geometries is None:
+        geometries = []
     return {
         "type": "GeometryCollection",
         "geometries": geometries
     }
 
 
-def create_geojson_feature(geometry_type: str, properties: dict = {}, coordinates: list = []):
+def create_geojson_feature(geometry_type: str, properties: dict = None, coordinates: list = None):
     """
     Create a GeoJSON Feature.
 
@@ -73,6 +77,10 @@ def create_geojson_feature(geometry_type: str, properties: dict = {}, coordinate
     :param coordinates: List of coordinates
     :return: GeoJSON Feature
     """
+    if properties is None:
+        properties = {}
+    if coordinates is None:
+        coordinates = []
     return {
         "type": "Feature",
         "properties": properties,
@@ -80,13 +88,15 @@ def create_geojson_feature(geometry_type: str, properties: dict = {}, coordinate
     }
 
 
-def create_geojson_feature_collection(features: list = []):
+def create_geojson_feature_collection(features: list = None):
     """
     Create a GeoJSON Feature Collection.
 
     :param features: List of GeoJSON Features
     :return: GeoJSON Feature Collection
     """
+    if features is None:
+        features = []
     return {
         "type": "FeatureCollection",
         "features": features
@@ -113,4 +123,3 @@ def write_geojson_file(file_path: str, geojson: dict):
     :param geojson: GeoJSON
     """
     utils_file.write_json_file(file_path, geojson)
-

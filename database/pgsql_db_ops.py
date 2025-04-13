@@ -60,9 +60,9 @@ def close_pg_connection(conn: psycopg2.Connection) -> None:
     print(f'Connection closed.')
 
 #-------------------------------------------------------------------------------
-def execute_sql_command(conn: psycopg2.Connection, 
-                        sql_execute_string: str, 
-                        params: tuple = None) -> None:
+def execute_pgsql_command(conn: psycopg2.Connection, 
+                          sql_execute_string: str, 
+                          params: tuple = None) -> None:
     """ Executes SQL command passed as string argument on database. Needs 
     connection to database as an argument. Use this function to make changes 
     to database, with no return statement.
@@ -78,15 +78,15 @@ def execute_sql_command(conn: psycopg2.Connection,
     try:
         c = conn.cursor()
         if params:
-            c.execute(sql.SQL(sql_execute_string).format(sql.Identifier(params)))
+            c.execute(sql.SQL(sql_execute_string).format(*(sql.Identifier(p) for p in params)))
         else:
             c.execute(sql_execute_string)
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
 #-------------------------------------------------------------------------------
-def query_sql_table(conn: psycopg2.Connection, 
-                    sql_query_string: str) -> pd.DataFrame:
+def query_pgsql_table(conn: psycopg2.Connection, 
+                      sql_query_string: str) -> pd.DataFrame:
     """ Queries SQL table as per the passed command and returns data. Needs 
     connection to database as an argument. 
 

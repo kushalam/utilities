@@ -43,8 +43,8 @@ def disconnect_sqlite_db(conn: sqlite3.Connection) -> None:
     print('Connection closed.')
 
 #-------------------------------------------------------------------------------
-def execute_sql_command(conn: sqlite3.Connection, 
-                        sql_execute_string: str) -> None:
+def execute_sqlite_command(conn: sqlite3.Connection, 
+                           sql_execute_string: str) -> None:
     """ Executes SQL command passed as string argument on database. Needs 
     connection to database as an argument. Use this function to make changes 
     to database, with no return statement.
@@ -60,8 +60,8 @@ def execute_sql_command(conn: sqlite3.Connection,
         print(e)
 
 #-------------------------------------------------------------------------------
-def query_sql_command(conn: sqlite3.Connection, 
-                      sql_query_string: str):
+def query_sqlite_command(conn: sqlite3.Connection, 
+                         sql_query_string: str):
     """ Queries SQL table as per the passed command and returns data. Needs 
     connection to database as an argument. 
     
