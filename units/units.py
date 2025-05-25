@@ -8,6 +8,7 @@ Created:    2025-04-06
 
 import csv
 from importlib import resources
+import pandas as pd
 
 # Load constants and conversion factors from CSV files
 with resources.open_text('utilities.units', 'constants_codata.csv') as f:
@@ -16,17 +17,14 @@ with resources.open_text('utilities.units', 'constants_codata.csv') as f:
     rows = csv.DictReader(f)
     constants_codata = {row['constant_name']: float(row['value']) for row in rows}
 
-with resources.open_text('utilities.units', 'conversion_factors.csv') as f:
-    for i in range(2):
-        next(f)
-    rows = csv.DictReader(f)
-    conversion_factors = {row['source_unit']: row['conversion_factor'] for row in rows}
-
 with resources.open_text('utilities.units', 'constants_physical.csv') as f:
     rows = csv.DictReader(f)
     constants_physical = {row['constant_name']: float(row['value']) for row in rows}
 
 constants = {**constants_codata, **constants_physical}
+
+with resources.files('utilities.units').joinpath('conversion_factors.csv').open('r', encoding='utf-8') as f:
+    conversion_factors = pd.read_csv(f, skiprows=2)
 
 #-------------------------------------------------------------------------------
 def get_constant(constant_name: str) -> float:

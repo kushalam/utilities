@@ -8,9 +8,11 @@ Created:    2025-02-26
 """
 
 from .. import utils_file
+from typing import Optional
 
 
-def create_geojson_geometry(geometry_type: str, coordinates: list = None):
+def create_geojson_geometry(geometry_type: str, 
+                            coordinates: Optional[list] = None):
     """
     Create a GeoJSON Geometry.
 
@@ -54,7 +56,7 @@ def create_geojson_geometry(geometry_type: str, coordinates: list = None):
         return None
 
 
-def create_geojson_geometry_collection(geometries: list = None):
+def create_geojson_geometry_collection(geometries: Optional[list] = None):
     """
     Create a GeoJSON Geometry Collection.
 
@@ -69,7 +71,9 @@ def create_geojson_geometry_collection(geometries: list = None):
     }
 
 
-def create_geojson_feature(geometry_type: str, properties: dict = None, coordinates: list = None):
+def create_geojson_feature(geometry_type: str, 
+                           properties: Optional[dict] = None, 
+                           coordinates: Optional[list] = None):
     """
     Create a GeoJSON Feature.
 
@@ -88,7 +92,7 @@ def create_geojson_feature(geometry_type: str, properties: dict = None, coordina
     }
 
 
-def create_geojson_feature_collection(features: list = None):
+def create_geojson_feature_collection(features: Optional[list] = None):
     """
     Create a GeoJSON Feature Collection.
 
@@ -103,7 +107,8 @@ def create_geojson_feature_collection(features: list = None):
     }
 
 
-def add_geojson_feature_to_feature_collection(feature_collection: dict, feature: dict):
+def add_geojson_feature_to_feature_collection(feature_collection: dict, 
+                                              feature: dict):
     """
     Add a GeoJSON Feature to a GeoJSON Feature Collection.
 
@@ -115,7 +120,8 @@ def add_geojson_feature_to_feature_collection(feature_collection: dict, feature:
     return feature_collection
 
 
-def write_geojson_file(file_path: str, geojson: dict):
+def write_geojson_file(file_path: str, 
+                       geojson: dict):
     """
     Write GeoJSON to a file.
     

@@ -9,10 +9,11 @@ Created:    2025-02-06
 import pandas
 import sqlite3
 import sys
+from typing import Optional
 
 #-------------------------------------------------------------------------------
 def connect_sqlite_db(db_file: str, 
-                      db_loc: str) -> sqlite3.Connection:
+                      db_loc: str) -> Optional[sqlite3.Connection]:
     """ Creates a database connection to SQLite database and returns a 
     connection object.
     
@@ -106,4 +107,5 @@ if __name__ == '__main__':
         conn = connect_sqlite_db(sys.argv[0], sys.argv[1])
     except IndexError:
         print(f'Could not establish connection to database. Please check input arguments and try again.')
-    disconnect_sqlite_db(conn)
+    if conn is not None:
+        disconnect_sqlite_db(conn)

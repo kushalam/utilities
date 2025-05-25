@@ -22,7 +22,7 @@ def open_file_at_path(file_path: str, mode: str):
     """
     Open file at given path with given mode, creating any parent directories as needed.
     """
-    make_dir_at_path(Path(file_path).parent)
+    make_dir_at_path(str(Path(file_path).parent))
     return open(file_path, mode)
 
 

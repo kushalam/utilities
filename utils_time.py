@@ -29,8 +29,10 @@ def convert_datetime_to_RFC3339(input_datetime: datetime) -> str:
         return rfc_datetime
     except ValueError:
         print(f"Error! Invalid value to convert to RFC3339 datetime given {input_datetime}")
-    except:
+        raise
+    except Exception:
         print(f"Error! Unable to convert to RFC3339 datetime given {input_datetime}")
+        raise
 
 
 def get_datetime_from_RFC3339(timestamp: str) -> datetime:
@@ -50,5 +52,7 @@ def get_datetime_from_RFC3339(timestamp: str) -> datetime:
         return datetime.strptime(dt, "%Y-%m-%dT%H:%M:%SZ")
     except ValueError:
         print(f"Error! Invalid value to convert from RFC3339 datetime given {timestamp}")
-    except:
+        raise
+    except Exception:
         print(f"Error! Unable to convert from RFC3339 datetime given {timestamp}")
+        raise

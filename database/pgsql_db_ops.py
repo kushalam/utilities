@@ -9,13 +9,16 @@ Created:    2025-02-28
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+from psycopg2.extensions import connection
+from typing import Optional
+from sqlalchemy import create_engine
 
 #-------------------------------------------------------------------------------
 def open_pg_connection(user: str,
                        password: str,
                        dbname: str, 
                        host: str = 'localhost', 
-                       port: str = '5432') -> psycopg2.Connection:
+                       port: str = '5432') -> Optional[connection]:
     """ Creates a database connection to PostgreSQL database and returns a
     connection object.
 
@@ -49,20 +52,20 @@ def open_pg_connection(user: str,
     return conn
 
 #-------------------------------------------------------------------------------
-def close_pg_connection(conn: psycopg2.Connection) -> None:
+def close_pg_connection(conn: connection) -> None:
     """ Closes connection to PostgreSQL database specified by connection object.
 
     :Parameters:
-        conn: psycopg2.Connection
+        conn: psycopg2.extensions.connection
             connection to the database to be closed
     """
     conn.close()
     print(f'Connection closed.')
 
 #-------------------------------------------------------------------------------
-def execute_pgsql_command(conn: psycopg2.Connection, 
+def execute_pgsql_command(conn: connection, 
                           sql_execute_string: str, 
-                          params: tuple = None) -> None:
+                          params: Optional[tuple] = None) -> None:
     """ Executes SQL command passed as string argument on database. Needs 
     connection to database as an argument. Use this function to make changes 
     to database, with no return statement.
@@ -85,7 +88,7 @@ def execute_pgsql_command(conn: psycopg2.Connection,
         print(error)
 
 #-------------------------------------------------------------------------------
-def query_pgsql_table(conn: psycopg2.Connection, 
+def query_pgsql_table(conn: connection, 
                       sql_query_string: str) -> pd.DataFrame:
     """ Queries SQL table as per the passed command and returns data. Needs 
     connection to database as an argument. 
@@ -101,21 +104,20 @@ def query_pgsql_table(conn: psycopg2.Connection,
             data from query
     """
     try:
-        df = pd.read_sql_query(sql_query_string, conn)
+        df = pd.read_sql(sql_query_string, conn)  # type: ignore
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     
     return df
 
 #-------------------------------------------------------------------------------
-def upload_table(conn: psycopg2.Connection, 
-                 table_loc: str, 
-                 table_name: str) -> None:
-    """ Uploads table to PostgreSQL database.
+def upload_table(conn_string: str, table_loc: str, table_name: str) -> None:
+    """
+    Uploads table to PostgreSQL database.
 
     :Parameters:
-        conn: psycopg2.Connection
-            connection to the database
+        conn_string: str
+            SQLAlchemy connection string (e.g., 'postgresql+psycopg2://user:password@host:port/dbname')
         table_loc: str
             location of table to be uploaded
         table_name: str
@@ -123,8 +125,9 @@ def upload_table(conn: psycopg2.Connection,
     """
     try:
         df = pd.read_csv(table_loc)
-        df.to_sql(table_name, conn, if_exists='replace', index=False)
-    except (Exception, psycopg2.DatabaseError) as error:
+        engine = create_engine(conn_string)
+        df.to_sql(table_name, engine, if_exists='replace', index=False)
+    except Exception as error:
         print(error)
 
 
