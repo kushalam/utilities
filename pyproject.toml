@@ -1,0 +1,19 @@
+[project]
+name = "utilities"
+dynamic = ["version"]
+description = "Common utilities for use by other projects."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [ { name = "Kushal Moolchandani" } ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "utilities/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/utilities",
+]

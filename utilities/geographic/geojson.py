@@ -7,7 +7,7 @@ Author:     Kushal Moolchandani
 Created:    2025-02-26
 """
 
-from .. import utils_file
+from utilities import utils_file
 from typing import Optional
 
 
