@@ -7,7 +7,12 @@ The package includes the following sub-packages:
 
 - database
 - geographic
+- plotting
 - units
+
+In addition, the package also includes modules with common utilities for
+interaction with files and time and a `plotting` package that contains functions
+to make figures.
 
 ### `database` package
 
@@ -25,6 +30,3 @@ the GeoJSON spec.
 
 This package includes universal constants and a module convert quantities from
 one system of units to another.
-
-In addition, the package also includes modules with common utilities for
-interaction with files and time.
